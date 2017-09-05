@@ -163,6 +163,14 @@ class custom_extend_quick_edit{
            $html .= '</div>';
        $html .= '</fieldset>';
    }
+   else if($column == 'product_price'){
+       $html .= '<fieldset class="inline-edit-col-left ">';
+           $html .= '<div class="inline-edit-group wp-clearfix">';
+               $html .= '<label class="alignleft" for="product_price">가격</label>';
+               $html .= '<input type="text" name="product_price" id="product_price_quick" value="" />';
+           $html .= '</div>';
+       $html .= '</fieldset>';
+   }
    echo $html;
     }
     //add a custom column to hold our data
@@ -174,6 +182,7 @@ class custom_extend_quick_edit{
       $new_columns['product_featured_order'] = 'Top 30 순위';
       $new_columns['product_descendant_order'] = '하위카테고리';
       $new_columns['product_brand_order'] = '브랜드별';
+      $new_columns['product_price'] = '가격';
 
       return array_merge($columns, $new_columns);
     }
@@ -220,6 +229,13 @@ class custom_extend_quick_edit{
             $html .= $product_brand_order;
         $html .= '</div>';
     }
+    else if($column_name == 'product_price'){
+        $product_price = get_post_meta($post_id, 'product_price', true);
+
+        $html .= '<div id="product_price_' . $post_id . '">';
+            $html .= $product_price;
+        $html .= '</div>';
+    }
     echo $html;
     }
     //saving meta info (used for both traditional and quick-edit saves)
@@ -244,18 +260,6 @@ class custom_extend_quick_edit{
           return;
         }
 
-        $old_product_ranking_order = isset($_POST['old_product_ranking_order']) ?
-        sanitize_text_field($_POST['old_product_ranking_order']) : 0;
-
-        $old_product_featured_order = isset($_POST['old_product_featured_order']) ?
-        sanitize_text_field($_POST['old_product_featured_order']) : 0;
-
-        $old_product_descendant_order = isset($_POST['old_product_descendant_order']) ?
-        sanitize_text_field($_POST['old_product_descendant_order']) : 0;
-
-        $old_product_brand_order = isset($_POST['old_product_brand_order']) ?
-        sanitize_text_field($_POST['old_product_brand_order']) : 0;
-
         $product_ranking_order = isset($_POST['product_ranking_order']) ?
         sanitize_text_field($_POST['product_ranking_order']) : 0;
 
@@ -274,10 +278,29 @@ class custom_extend_quick_edit{
         $product_price = isset($_POST['product_price']) ?
         sanitize_text_field($_POST['product_price']) : '';
 
-        $product_ranking_changed = $old_product_ranking_order - $product_ranking_order;
-        $featured_ranking_changed = $old_product_featured_order - $product_featured_order;
-        $descendant_ranking_changed = $old_product_descendant_order - $product_descendant_order;
-        $brand_ranking_changed = $old_product_brand_order - $product_brand_order;
+        $old_product_ranking_order = isset($_POST['old_product_ranking_order']) ?
+        sanitize_text_field($_POST['old_product_ranking_order']) : 0;
+
+        $old_product_featured_order = isset($_POST['old_product_featured_order']) ?
+        sanitize_text_field($_POST['old_product_featured_order']) : 0;
+
+        $old_product_descendant_order = isset($_POST['old_product_descendant_order']) ?
+        sanitize_text_field($_POST['old_product_descendant_order']) : 0;
+
+        $old_product_brand_order = isset($_POST['old_product_brand_order']) ?
+        sanitize_text_field($_POST['old_product_brand_order']) : 0;
+
+        $product_ranking_changed = ($old_product_ranking_order !== 0) ?
+          $old_product_ranking_order - $product_ranking_order : 0;
+
+        $featured_ranking_changed = ($old_product_featured_order !== 0) ?
+          $old_product_featured_order - $product_featured_order : 0;
+
+        $descendant_ranking_changed = ($old_product_descendant_order !== 0) ?
+          $old_product_descendant_order - $product_descendant_order : 0;
+
+        $brand_ranking_changed = ($old_product_brand_order !== 0) ?
+          $old_product_brand_order - $product_brand_order : 0;
 
         update_post_meta( $post_id, 'product_ranking_order', $product_ranking_order );
         update_post_meta( $post_id, 'product_descendant_order', $product_descendant_order );
@@ -304,7 +327,7 @@ class custom_extend_quick_edit{
 
     // admin post list css
     public function custom_postlist_css() {
-      
+
       $post_type = get_post_type();
       if ($post_type == 'cosmetic') :
       echo '

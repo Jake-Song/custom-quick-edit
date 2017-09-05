@@ -56,6 +56,12 @@ jQuery(document).ready(function($){
             $product_brand_order_value = $product_brand_order.text();
             $row.find('#product_brand_order_quick').val($product_brand_order_value);
             $row.find('#old_product_brand_order_quick').val($product_brand_order_value);
+
+            // product price
+            $product_price= $('#product_price_' + post_id);
+            $product_price_value = $product_price.text();
+            $row.find('#product_price_quick').val($product_price_value);
+            
         }
 
     }
