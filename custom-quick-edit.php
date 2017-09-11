@@ -49,6 +49,7 @@ class custom_extend_quick_edit{
       $product_featured_attr = !empty($product_featured) ? ' checked' : '';
       $product_featured_order = get_post_meta( get_the_ID(), 'product_featured_order', true );
       $product_price = get_post_meta( get_the_ID(), 'product_price', true );
+      $checkout_url = get_post_meta( get_the_ID(), 'checkout_url', true );
 
       $old_product_ranking_order = $product_ranking_order;
       $old_product_featured_order = $product_featured_order;
@@ -95,6 +96,10 @@ class custom_extend_quick_edit{
       $content .= '<label for="product_featured_order"></label>';
 
       $content .= "<input type='text' id='product_featured_order' name='product_featured_order' placeholder='순위를 입력하세요.' value='{$product_featured_order}' />";
+
+      $content .= '<label for="checkout_url">관련 링크</label>';
+
+      $content .= "<input type='url' id='checkout_url' name='checkout_url' placeholder='관련 링크를 입력하세요.' value='{$checkout_url}' />";
 
       echo $content;
     }
@@ -278,6 +283,9 @@ class custom_extend_quick_edit{
         $product_price = isset($_POST['product_price']) ?
         sanitize_text_field($_POST['product_price']) : '';
 
+        $checkout_url = isset($_POST['checkout_url']) ?
+        esc_url( $_POST['checkout_url']) : '';
+
         $old_product_ranking_order = isset($_POST['old_product_ranking_order']) ?
         sanitize_text_field($_POST['old_product_ranking_order']) : 0;
 
@@ -308,6 +316,7 @@ $test = 0;
         update_post_meta( $post_id, 'product_featured', $product_featured );
         update_post_meta( $post_id, 'product_featured_order', $product_featured_order );
         update_post_meta( $post_id, 'product_price', $product_price );
+        update_post_meta( $post_id, 'checkout_url', $checkout_url );
 
         update_post_meta( $post_id, 'product_ranking_changed', $product_ranking_changed );
         update_post_meta( $post_id, 'featured_ranking_changed', $featured_ranking_changed );
@@ -324,7 +333,7 @@ $test = 0;
       $sortable_columns[ 'product_featured' ] = 'product_featured';
       $sortable_columns['product_descendant_order'] = 'product_descendant_order';
       $sortable_columns['product_brand_order'] = 'product_brand_order';
-      
+
       return $sortable_columns;
     }
 
