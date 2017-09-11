@@ -290,18 +290,18 @@ class custom_extend_quick_edit{
         $old_product_brand_order = isset($_POST['old_product_brand_order']) ?
         sanitize_text_field($_POST['old_product_brand_order']) : 0;
 
-        $product_ranking_changed = ($old_product_ranking_order !== 0) ?
+        $product_ranking_changed = !empty($old_product_ranking_order) ?
           $old_product_ranking_order - $product_ranking_order : 0;
 
-        $featured_ranking_changed = ($old_product_featured_order !== 0) ?
+        $featured_ranking_changed = !empty($old_product_featured_order) ?
           $old_product_featured_order - $product_featured_order : 0;
 
-        $descendant_ranking_changed = ($old_product_descendant_order !== 0) ?
+        $descendant_ranking_changed = !empty($old_product_descendant_order) ?
           $old_product_descendant_order - $product_descendant_order : 0;
 
-        $brand_ranking_changed = ($old_product_brand_order !== 0) ?
+        $brand_ranking_changed = !empty($old_product_brand_order) ?
           $old_product_brand_order - $product_brand_order : 0;
-
+$test = 0;
         update_post_meta( $post_id, 'product_ranking_order', $product_ranking_order );
         update_post_meta( $post_id, 'product_descendant_order', $product_descendant_order );
         update_post_meta( $post_id, 'product_brand_order', $product_brand_order );
@@ -322,6 +322,9 @@ class custom_extend_quick_edit{
       $sortable_columns[ 'product_ranking_order' ] = 'product_ranking_order';
       $sortable_columns[ 'product_featured_order' ] = 'product_featured_order';
       $sortable_columns[ 'product_featured' ] = 'product_featured';
+      $sortable_columns['product_descendant_order'] = 'product_descendant_order';
+      $sortable_columns['product_brand_order'] = 'product_brand_order';
+      
       return $sortable_columns;
     }
 
