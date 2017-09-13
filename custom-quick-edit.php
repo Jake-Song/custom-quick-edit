@@ -56,6 +56,7 @@ class custom_extend_quick_edit{
       $old_product_descendant_order = $product_descendant_order;
       $old_product_brand_order = $product_brand_order;
 
+      $content .= "<table class='metabox-input'>";
       $content .= "<input type='hidden' id='old_product_ranking_order'
                   name='old_product_ranking_order' value='{$old_product_ranking_order}' />";
       $content .= "<input type='hidden' id='old_product_featured_order'
@@ -65,41 +66,42 @@ class custom_extend_quick_edit{
       $content .= "<input type='hidden' id='old_product_brand_order'
                   name='old_product_brand_order' value='{$old_product_brand_order}' />";
 
-      $content .= "<label for='product_price'>가격</label>";
+      $content .= "<tr><td><label for='product_price'>가격</label>";
       $content .= "<input type='text' id='product_price'
                   name='product_price' placeholder='가격을 입력하세요.'
-                  value='{$product_price}' /><br>";
+                  value='{$product_price}' /></td>";
 
-      $content .= "<label for='product_ranking_order'>카테고리별 순위</label>";
+      $content .= "<td><label for='product_ranking_order'>카테고리별 순위</label>";
 
       $content .= "<input type='text' id='product_ranking_order'
                   name='product_ranking_order' placeholder='순위를 입력하세요.'
-                  value='{$product_ranking_order}' /><br>";
+                  value='{$product_ranking_order}' /></td></tr>";
 
-      $content .= "<label for='product_descendant_order'>하위 카테고리별 순위</label>";
+      $content .= "<tr><td><label for='product_descendant_order'>하위 카테고리별 순위</label>";
 
       $content .= "<input type='text' id='product_descendant_order'
                   name='product_descendant_order' placeholder='순위를 입력하세요.'
-                  value='{$product_descendant_order}' /><br>";
+                  value='{$product_descendant_order}' /></td>";
 
-      $content .= "<label for='product_brand_order'>브랜드별 순위</label>";
+      $content .= "<td><label for='product_brand_order'>브랜드별 순위</label>";
 
       $content .= "<input type='text' id='product_brand_order'
                               name='product_brand_order' placeholder='순위를 입력하세요.'
-                              value='{$product_brand_order}' /><br>";
+                              value='{$product_brand_order}' /></td></tr>";
 
-      $content .= '<label for="product_featured">종합랭킹등록하기</label>';
+      $content .= '<tr><td><label for="product_featured">종합랭킹등록하기</label>';
 
       $content .= "<input type='checkbox' id='product_featured' name='product_featured' value='featured'
-      {$product_featured_attr} />";
+      {$product_featured_attr} /></td>";
 
-      $content .= '<label for="product_featured_order"></label>';
+      $content .= '<td><label for="product_featured_order">종합랭킹 순위</label>';
 
-      $content .= "<input type='text' id='product_featured_order' name='product_featured_order' placeholder='순위를 입력하세요.' value='{$product_featured_order}' />";
+      $content .= "<input type='text' id='product_featured_order' name='product_featured_order' placeholder='순위를 입력하세요.' value='{$product_featured_order}' /></td></tr>";
 
-      $content .= '<label for="checkout_url">관련 링크</label>';
-
-      $content .= "<input type='url' id='checkout_url' name='checkout_url' placeholder='관련 링크를 입력하세요.' value='{$checkout_url}' />";
+      $content .= '<tr><td><label for="checkout_url">관련 링크</label>';
+      $content .= "<input type='url' id='checkout_url' name='checkout_url' placeholder='관련 링크를 입력하세요.' value='{$checkout_url}' /></td>
+      <td></td></tr>";
+      $content .= "</table>";
 
       echo $content;
     }
