@@ -66,41 +66,45 @@ class custom_extend_quick_edit{
       $content .= "<input type='hidden' id='old_product_brand_order'
                   name='old_product_brand_order' value='{$old_product_brand_order}' />";
 
+      $content .= '<tr><td><label for="product_featured">종합랭킹등록하기</label>';
+
+      $content .= "<input type='checkbox' id='product_featured' name='product_featured' value='featured'
+      {$product_featured_attr} /></td><td></td></tr>";
+
       $content .= "<tr><td><label for='product_price'>가격</label>";
       $content .= "<input type='text' id='product_price'
                   name='product_price' placeholder='가격을 입력하세요.'
                   value='{$product_price}' /></td>";
 
-      $content .= "<td><label for='product_ranking_order'>카테고리별 순위</label>";
+      $content .= '<td><label for="checkout_url">관련 링크</label>';
+      $content .= "<input type='url' id='checkout_url' name='checkout_url' placeholder='관련 링크를 입력하세요.' value='{$checkout_url}' /></td></tr>";
 
-      $content .= "<input type='text' id='product_ranking_order'
+      $content .= "<tr><td><label for='product_ranking_order'>카테고리별 순위</label>";
+
+      $content .= "<input type='checkbox' id='product_ranking_update' name='product_ranking_update' value='updated' />
+                  <input type='text' id='product_ranking_order'
                   name='product_ranking_order' placeholder='순위를 입력하세요.'
-                  value='{$product_ranking_order}' /></td></tr>";
+                  value='{$product_ranking_order}' /></td>";
 
-      $content .= "<tr><td><label for='product_descendant_order'>하위 카테고리별 순위</label>";
+      $content .= "<td><label for='product_descendant_order'>하위 카테고리별 순위</label>";
 
-      $content .= "<input type='text' id='product_descendant_order'
+      $content .= "<input type='checkbox' id='product_descendant_update' name='product_descendant_update' value='updated' />
+                  <input type='text' id='product_descendant_order'
                   name='product_descendant_order' placeholder='순위를 입력하세요.'
-                  value='{$product_descendant_order}' /></td>";
+                  value='{$product_descendant_order}' /></td></tr>";
 
-      $content .= "<td><label for='product_brand_order'>브랜드별 순위</label>";
+      $content .= "<tr><td><label for='product_brand_order'>브랜드별 순위</label>";
 
-      $content .= "<input type='text' id='product_brand_order'
-                              name='product_brand_order' placeholder='순위를 입력하세요.'
-                              value='{$product_brand_order}' /></td></tr>";
-
-      $content .= '<tr><td><label for="product_featured">종합랭킹등록하기</label>';
-
-      $content .= "<input type='checkbox' id='product_featured' name='product_featured' value='featured'
-      {$product_featured_attr} /></td>";
+      $content .= "<input type='checkbox' id='product_brand_update' name='product_brand_update' value='updated' />
+                   <input type='text' id='product_brand_order'
+                   name='product_brand_order' placeholder='순위를 입력하세요.'
+                   value='{$product_brand_order}' /></td>";
 
       $content .= '<td><label for="product_featured_order">종합랭킹 순위</label>';
 
-      $content .= "<input type='text' id='product_featured_order' name='product_featured_order' placeholder='순위를 입력하세요.' value='{$product_featured_order}' /></td></tr>";
+      $content .= "<input type='checkbox' id='product_featured_update' name='product_featured_update' value='updated' />
+                   <input type='text' id='product_featured_order' name='product_featured_order' placeholder='순위를 입력하세요.' value='{$product_featured_order}' /></td></tr>";
 
-      $content .= '<tr><td><label for="checkout_url">관련 링크</label>';
-      $content .= "<input type='url' id='checkout_url' name='checkout_url' placeholder='관련 링크를 입력하세요.' value='{$checkout_url}' /></td>
-      <td></td></tr>";
       $content .= "</table>";
 
       echo $content;
@@ -133,6 +137,7 @@ class custom_extend_quick_edit{
               $html .= "<input type='hidden' id='old_product_ranking_order_quick'
                           name='old_product_ranking_order' value='' />";
               $html .= '<label class="alignleft" for="product_ranking_order">카테고리별 순위</label>';
+               $html .= "<input type='checkbox' id='product_ranking_update_quick' name='product_ranking_update' value='updated' />";
                $html .= "<input type='text' id='product_ranking_order_quick'
                            name='product_ranking_order' placeholder='순위를 입력하세요.'
                            value='' />";
@@ -146,6 +151,7 @@ class custom_extend_quick_edit{
                $html .= "<input type='hidden' id='old_product_featured_order_quick'
                            name='old_product_featured_order' value='' />";
                $html .= '<label class="alignleft" for="product_featured_order">Top 30 순위</label>';
+               $html .= "<input type='checkbox' id='product_featured_update_quick' name='product_featured_update' value='updated' />";
                $html .= '<input type="text" name="product_featured_order" id="product_featured_order_quick" value="" />';
            $html .= '</div>';
        $html .= '</fieldset>';
@@ -156,6 +162,7 @@ class custom_extend_quick_edit{
                $html .= "<input type='hidden' id='old_product_descendant_order_quick'
                            name='old_product_descendant_order' value='' />";
                $html .= '<label class="alignleft" for="product_descendant_order">하위 카테고리별 순위</label>';
+               $html .= "<input type='checkbox' id='product_descendant_update_quick' name='product_descendant_update' value='updated' />";
                $html .= '<input type="text" name="product_descendant_order" id="product_descendant_order_quick" value="" />';
            $html .= '</div>';
        $html .= '</fieldset>';
@@ -166,6 +173,7 @@ class custom_extend_quick_edit{
                $html .= "<input type='hidden' id='old_product_brand_order_quick'
                            name='old_product_brand_order' value='' />";
                $html .= '<label class="alignleft" for="product_brand_order">브랜드별 순위</label>';
+               $html .= "<input type='checkbox' id='product_brand_update_quick' name='product_brand_update' value='updated' />";
                $html .= '<input type="text" name="product_brand_order" id="product_brand_order_quick" value="" />';
            $html .= '</div>';
        $html .= '</fieldset>';
@@ -311,19 +319,55 @@ class custom_extend_quick_edit{
 
         $brand_ranking_changed = !empty($old_product_brand_order) ?
           $old_product_brand_order - $product_brand_order : 0;
-$test = 0;
-        update_post_meta( $post_id, 'product_ranking_order', $product_ranking_order );
-        update_post_meta( $post_id, 'product_descendant_order', $product_descendant_order );
-        update_post_meta( $post_id, 'product_brand_order', $product_brand_order );
+
+        $product_ranking_update = isset($_POST['product_ranking_update']) ?
+            sanitize_text_field($_POST['product_ranking_update']) : "";
+        $product_descendant_update = isset($_POST['product_descendant_update']) ?
+          sanitize_text_field($_POST['product_descendant_update']) : "";
+        $product_brand_update = isset($_POST['product_brand_update']) ?
+            sanitize_text_field($_POST['product_brand_update']) : "";
+        $product_featured_update = isset($_POST['product_featured_update']) ?
+            sanitize_text_field($_POST['product_featured_update']) : "";
+
+        if( $product_ranking_update === 'updated' ){
+
+          $ranking_update_date = date( 'n/d/Y' );
+          update_post_meta( $post_id, 'ranking_update_date', $ranking_update_date );
+
+          update_post_meta( $post_id, 'product_ranking_order', $product_ranking_order );
+          update_post_meta( $post_id, 'product_ranking_changed', $product_ranking_changed );
+        }
+
+        if( $product_descendant_update === 'updated' ){
+
+          $descendant_update_date = date( 'n/d/Y' );
+          update_post_meta( $post_id, 'descendant_update_date', $descendant_update_date );
+
+          update_post_meta( $post_id, 'product_descendant_order', $product_descendant_order );
+          update_post_meta( $post_id, 'descendant_ranking_changed', $descendant_ranking_changed );
+        }
+
+        if( $product_brand_update === 'updated' ){
+
+          $brand_update_date = date( 'n/d/Y' );
+          update_post_meta( $post_id, 'brand_update_date', $brand_update_date );
+
+          update_post_meta( $post_id, 'product_brand_order', $product_brand_order );
+          update_post_meta( $post_id, 'brand_ranking_changed', $brand_ranking_changed );
+        }
+
+        if( $product_featured_update === 'updated' ){
+
+          $featured_update_date = date( 'n/d/Y' );
+          update_post_meta( $post_id, 'featured_update_date', $featured_update_date );
+          
+          update_post_meta( $post_id, 'product_featured_order', $product_featured_order );
+          update_post_meta( $post_id, 'featured_ranking_changed', $featured_ranking_changed );
+        }
+
         update_post_meta( $post_id, 'product_featured', $product_featured );
-        update_post_meta( $post_id, 'product_featured_order', $product_featured_order );
         update_post_meta( $post_id, 'product_price', $product_price );
         update_post_meta( $post_id, 'checkout_url', $checkout_url );
-
-        update_post_meta( $post_id, 'product_ranking_changed', $product_ranking_changed );
-        update_post_meta( $post_id, 'featured_ranking_changed', $featured_ranking_changed );
-        update_post_meta( $post_id, 'descendant_ranking_changed', $descendant_ranking_changed );
-        update_post_meta( $post_id, 'brand_ranking_changed', $brand_ranking_changed );
 
       endif;
     }
