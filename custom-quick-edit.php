@@ -331,7 +331,7 @@ class custom_extend_quick_edit{
 
         if( $product_ranking_update === 'updated' ){
 
-          $ranking_update_date = date( 'n/d/Y' );
+          $ranking_update_date = date( 'Y-m-d h:i:s' );
           update_post_meta( $post_id, 'ranking_update_date', $ranking_update_date );
 
           update_post_meta( $post_id, 'product_ranking_order', $product_ranking_order );
@@ -340,7 +340,7 @@ class custom_extend_quick_edit{
 
         if( $product_descendant_update === 'updated' ){
 
-          $descendant_update_date = date( 'n/d/Y' );
+          $descendant_update_date = date( 'Y-m-d h:i:s' );
           update_post_meta( $post_id, 'descendant_update_date', $descendant_update_date );
 
           update_post_meta( $post_id, 'product_descendant_order', $product_descendant_order );
@@ -349,7 +349,7 @@ class custom_extend_quick_edit{
 
         if( $product_brand_update === 'updated' ){
 
-          $brand_update_date = date( 'n/d/Y' );
+          $brand_update_date = date( 'Y-m-d h:i:s' );
           update_post_meta( $post_id, 'brand_update_date', $brand_update_date );
 
           update_post_meta( $post_id, 'product_brand_order', $product_brand_order );
@@ -358,9 +358,10 @@ class custom_extend_quick_edit{
 
         if( $product_featured_update === 'updated' ){
 
-          $featured_update_date = date( 'n/d/Y' );
+          $featured_update_date = date( 'Y-m-d h:i:s' );
+          $test = 0;
           update_post_meta( $post_id, 'featured_update_date', $featured_update_date );
-          
+
           update_post_meta( $post_id, 'product_featured_order', $product_featured_order );
           update_post_meta( $post_id, 'featured_ranking_changed', $featured_ranking_changed );
         }
